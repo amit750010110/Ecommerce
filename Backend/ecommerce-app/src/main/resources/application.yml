@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: EcommerceAapp
+  datasource:
+    url: jdbc:mysql://localhost:3306/ecomm?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: Thakur#123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+    show-sql: true
+  sql:
+    init:
+      mode: always # Enable SQL initialization to load data.sql
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: 8080
+
+app:
+  jwt:
+    secret: mySuperSecretKeyThatIsAtLeast256BitsLongToWorkWithHS256Algorithm
+    expiration-in-ms: 900000 # 15 minutes
+  cors:
+    allowed-origins: http://localhost:5173
+  file:
+    upload-dir: uploads
+    base-url: http://localhost:8080
+
+logging:
+  level:
+    com.ec.demo: DEBUG
+    org.springframework.security: INFO
